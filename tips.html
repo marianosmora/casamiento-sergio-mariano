@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tips | Sergio & Mariano</title>
+  <meta name="description" content="Tips y recomendaciones para el casamiento de Sergio y Mariano en Tamandaré, Pernambuco, Brasil." />
+  <style>
+    :root{
+      --sand: #efe3cf;
+      --sand-2: #e7d6bd;
+      --green: #7fa37a;
+      --green-dark: #5f7d5b;
+      --blue: #82b7d8;
+      --blue-soft: #dff1fb;
+      --text: #2c3b34;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.82);
+      --shadow: 0 10px 30px rgba(44, 59, 52, 0.10);
+      --radius: 24px;
+      --radius-sm: 16px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+
+    body{
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(130,183,216,0.18), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(127,163,122,0.16), transparent 28%),
+        linear-gradient(180deg, #f6efe4 0%, #f4eadc 35%, #eef7fb 100%);
+      line-height: 1.6;
+    }
+
+    img{
+      max-width: 100%;
+      display: block;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .lang-switch{
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 1000;
+      display: flex;
+      gap: 8px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(10px);
+      padding: 8px;
+      border-radius: 999px;
+      box-shadow: var(--shadow);
+    }
+
+    .lang-btn{
+      border: none;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text);
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .lang-btn.active{
+      background: var(--green);
+      color: white;
+    }
+
+    .section{
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0;
+    }
+
+    .hero{
+      padding-top: 72px;
+      padding-bottom: 24px;
+    }
+
+    .hero-card,
+    .card{
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.55);
+      box-shadow: var(--shadow);
+      border-radius: 32px;
+      padding: 36px 30px;
+    }
+
+    .eyebrow{
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.78rem;
+      color: var(--green-dark);
+      font-weight: 800;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    h1{
+      margin: 0;
+      text-align: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 6vw, 4.6rem);
+      line-height: 0.95;
+      font-weight: 600;
+      color: var(--green-dark);
+    }
+
+    .hero-subtitle{
+      text-align: center;
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      margin: 18px auto 0;
+      max-width: 760px;
+      color: #446057;
+      font-weight: 500;
+    }
+
+    h2{
+      margin: 0 0 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.7rem, 4vw, 2.8rem);
+      line-height: 1.05;
+      color: var(--green-dark);
+    }
+
+    h3{
+      margin: 0 0 10px;
+      color: var(--green-dark);
+      font-size: 1.05rem;
+    }
+
+    .section-lead{
+      font-size: 1.03rem;
+      max-width: 800px;
+      color: #4c635a;
+      margin-bottom: 22px;
+    }
+
+    .helper{
+      font-size: .94rem;
+      color: #5f756c;
+      margin-top: 8px;
+    }
+
+    .btn{
+      border: none;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-weight: 800;
+      font-size: .96rem;
+      transition: .2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-primary{
+      background: var(--green);
+      color: white;
+      box-shadow: 0 10px 24px rgba(95,125,91,0.24);
+    }
+
+    .btn-secondary{
+      background: white;
+      color: var(--green-dark);
+      border: 1px solid rgba(95,125,91,0.18);
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+    }
+
+    .actions{
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .info-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .trip-grid{
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+    }
+
+    .mini-card{
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(127,163,122,0.14);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .list-grid{
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .contact-card{
+      background: rgba(255,255,255,0.72);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(95,125,91,0.14);
+    }
+
+    .contact-name{
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .contact-note{
+      color: #5a6f66;
+      font-size: .95rem;
+      margin-bottom: 8px;
+    }
+
+    .contact-line{
+      font-size: .95rem;
+      margin-bottom: 4px;
+      word-break: break-word;
+    }
+
+    .contact-line a{
+      color: var(--green-dark);
+      font-weight: 700;
+    }
+
+    .looks-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .look-card{
+      background: rgba(255,255,255,0.72);
+      border-radius: 22px;
+      padding: 18px;
+      border: 1px solid rgba(95,125,91,0.14);
+    }
+
+.carousel{
+  position: relative;
+  margin-bottom: 14px;
+}
+
+.carousel-frame{
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f8f4ec;
+  border: 1px solid rgba(95,125,91,0.24);
+  position: relative;
+}
+
+.carousel-frame img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  background: #f8f4ec;
+}
+
+.carousel-frame img.active{
+  display: block;
+}
+
+.carousel-placeholder{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #587165;
+  text-align: center;
+  padding: 18px;
+}
+
+.carousel-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  border: none;
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(8px);
+  color: var(--green-dark);
+  border-radius: 999px;
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(44, 59, 52, 0.12);
+  border: 1px solid rgba(255,255,255,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .2s ease;
+}
+
+.carousel-btn:hover{
+  transform: translateY(-50%) scale(1.04);
+  background: rgba(255,255,255,0.92);
+}
+
+.carousel-btn.prev{
+  left: 12px;
+}
+
+.carousel-btn.next{
+  right: 12px;
+}
+
+.carousel-dots{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+    .carousel-dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: rgba(95,125,91,0.22);
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .carousel-dot.active{
+      background: var(--green);
+      transform: scale(1.15);
+    }
+
+    .bullet-list{
+      margin: 0;
+      padding-left: 18px;
+      color: #4c635a;
+    }
+
+    .bullet-list li + li{
+      margin-top: 8px;
+    }
+
+    .faq-list{
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .faq-item{
+      background: rgba(255,255,255,0.72);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(95,125,91,0.14);
+    }
+
+    .faq-q{
+      font-weight: 800;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    .note-box{
+      background: rgba(130,183,216,0.10);
+      border: 1px solid rgba(130,183,216,0.18);
+      border-radius: 18px;
+      padding: 18px;
+      color: #436257;
+    }
+
+    footer{
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 8px 0 36px;
+      text-align: center;
+      color: #668176;
+      font-size: .95rem;
+    }
+
+    @media (max-width: 920px){
+      .info-grid,
+      .trip-grid,
+      .looks-grid{
+        grid-template-columns: 1fr;
+      }
+
+      .lang-switch{
+        top: auto;
+        bottom: 16px;
+      }
+    }
+
+    @media (max-width: 600px){
+      .section{
+        padding: 42px 0;
+      }
+
+      .hero-card,
+      .card{
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-switch" aria-label="Selector de idioma">
+    <button class="lang-btn active" data-lang="es">ES</button>
+    <button class="lang-btn" data-lang="pt">PT</button>
+  </div>
+
+  <main>
+    <section class="section hero">
+      <div class="hero-card">
+        <div class="eyebrow" data-i18n="heroEyebrow">Información útil</div>
+        <h1 data-i18n="heroTitle">Tips para Tamandaré</h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Todo lo que puede servirles para organizar el viaje, prepararse para el casamiento y disfrutar al máximo de Pernambuco.
+        </p>
+
+        <div class="actions">
+          <a href="index.html" class="btn btn-secondary" data-i18n="backButton">Volver a la invitación</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="como-llegar">
+      <div class="card">
+        <h2 data-i18n="tripTitle">Cómo llegar</h2>
+        <p class="section-lead" data-i18n="tripLead">
+          La opción más práctica para llegar a Tamandaré es volar a Recife y desde allí trasladarse por ruta.
+        </p>
+
+        <div class="trip-grid">
+          <div class="mini-card">
+            <h3 data-i18n="airportTitle">Llegada recomendada</h3>
+            <p data-i18n="airportText">
+              El aeropuerto recomendado es el de Recife, Pernambuco. Desde allí, el traslado en Uber hasta Tamandaré demora aproximadamente 1 hora y 35 minutos.
+            </p>
+
+            <h3 style="margin-top:18px;" data-i18n="groomStayTitle">Nuestra estadía en Brasil</h3>
+            <p data-i18n="groomStayText">
+              Vamos a estar en Brasil entre el 14 y el 30 de marzo, por si a alguien le sirve tenerlo en cuenta al organizar el viaje.
+            </p>
+          </div>
+
+          <div class="mini-card">
+            <h3 data-i18n="extraTripTitle">Si tienen más días</h3>
+            <p data-i18n="extraTripText1">
+              Vale muchísimo la pena sumar algunos días de viaje. Porto de Galinhas es una playa hermosa, turística y paradisíaca, y para nosotros es una parada que no se puede dejar de hacer en un viaje a Pernambuco.
+            </p>
+            <p data-i18n="extraTripText2">
+              Quienes tengan más tiempo también pueden aprovechar para conocer Maragogi o Pipa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="hospedajes">
+      <div class="card">
+        <h2 data-i18n="stayTitle">Hospedajes</h2>
+        <div class="list-grid">
+          <div class="contact-card">
+            <div class="contact-name">Hospedaje 1</div>
+            <div class="contact-note" data-i18n="stayCommentLabel">Comentario:</div>
+            <div class="contact-line">A completar</div>
+            <div class="contact-line"><strong data-i18n="contactLabel">Contacto:</strong> <a href="#">A completar</a></div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-name">Hospedaje 2</div>
+            <div class="contact-note" data-i18n="stayCommentLabel">Comentario:</div>
+            <div class="contact-line">A completar</div>
+            <div class="contact-line"><strong data-i18n="contactLabel">Contacto:</strong> <a href="#">A completar</a></div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-name">Hospedaje 3</div>
+            <div class="contact-note" data-i18n="stayCommentLabel">Comentario:</div>
+            <div class="contact-line">A completar</div>
+            <div class="contact-line"><strong data-i18n="contactLabel">Contacto:</strong> <a href="#">A completar</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="belleza">
+      <div class="card">
+        <h2 data-i18n="beautyTitle">Belleza</h2>
+        <div class="info-grid">
+          <div class="mini-card">
+            <h3 data-i18n="makeupTitle">Maquilladoras</h3>
+            <div class="list-grid">
+              <div class="contact-card">
+                <div class="contact-name">Maquilladora 1</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-name">Maquilladora 2</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-name">Maquilladora 3</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <h3 data-i18n="hairTitle">Peluqueras</h3>
+            <div class="list-grid">
+              <div class="contact-card">
+                <div class="contact-name">Peluquera 1</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-name">Peluquera 2</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+              <div class="contact-card">
+                <div class="contact-name">Peluquera 3</div>
+                <div class="contact-line"><strong data-i18n="phoneLabel">Teléfono:</strong> <a href="tel:+550000000000">+55 00 00000-0000</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="vestuario">
+      <div class="card">
+        <h2 data-i18n="looksTitle">Vestuarios de referencia</h2>
+        <div class="looks-grid">
+          <div class="look-card">
+<div class="carousel" data-carousel="men">
+  <div class="carousel-frame">
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+    <img src="" alt="" data-men-slide />
+
+    <button class="carousel-btn prev" type="button" data-prev="men" aria-label="Anterior">‹</button>
+    <button class="carousel-btn next" type="button" data-next="men" aria-label="Siguiente">›</button>
+  </div>
+
+  <div class="carousel-dots" data-dots="men"></div>
+</div>
+
+            <h3 data-i18n="lookMenTitle">Referencia hombres</h3>
+            <ul class="bullet-list">
+              <li data-i18n="lookMenItem1">Trajes livianos o conjuntos formales en telas frescas.</li>
+              <li data-i18n="lookMenItem2">Tonos claros, neutros o suaves funcionan muy bien.</li>
+              <li data-i18n="lookMenItem3">Zapatos cerrados elegantes.</li>
+            </ul>
+          </div>
+
+          <div class="look-card">
+<div class="carousel" data-carousel="women">
+  <div class="carousel-frame">
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+    <img src="" alt="" data-women-slide />
+
+    <button class="carousel-btn prev" type="button" data-prev="women" aria-label="Anterior">‹</button>
+    <button class="carousel-btn next" type="button" data-next="women" aria-label="Siguiente">›</button>
+  </div>
+
+  <div class="carousel-dots" data-dots="women"></div>
+</div>
+
+            <h3 data-i18n="lookWomenTitle">Referencia mujeres</h3>
+            <ul class="bullet-list">
+              <li data-i18n="lookWomenItem1">Vestidos o conjuntos elegantes en telas livianas.</li>
+              <li data-i18n="lookWomenItem2">Paleta clara, natural o suave, ideal para boda de playa.</li>
+              <li data-i18n="lookWomenItem3">Calzado elegante que no sea sandalia informal.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section" id="clima">
+      <div class="card">
+        <h2 data-i18n="weatherTitle">Clima y recomendaciones útiles</h2>
+
+        <div class="info-grid" style="margin-top:18px;">
+          <div class="mini-card">
+            <h3 data-i18n="weatherSubTitle">Qué tener en cuenta</h3>
+            <ul class="bullet-list">
+              <li data-i18n="weatherItem1">En marzo hace calor, con humedad y clima de playa.</li>
+              <li data-i18n="weatherItem2">Puede haber sol fuerte durante el día y brisa por la tarde/noche.</li>
+              <li data-i18n="weatherItem3">Conviene elegir telas frescas, cómodas y respirables.</li>
+              <li data-i18n="weatherItem4">Para peinados y maquillaje, es mejor contemplar humedad y viento.</li>
+            </ul>
+          </div>
+
+          <div class="mini-card">
+            <h3 data-i18n="carryTitle">Qué llevar</h3>
+            <ul class="bullet-list">
+              <li data-i18n="carryItem1">Documento o pasaporte según corresponda.</li>
+              <li data-i18n="carryItem2">Look formal para el casamiento.</li>
+              <li data-i18n="carryItem3">Malla, ropa liviana y algo cómodo para disfrutar la playa.</li>
+              <li data-i18n="carryItem4">Protector solar, repelente y anteojos de sol.</li>
+              <li data-i18n="carryItem5">Calzado cómodo para caminar y otro más formal para el evento.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="card">
+        <h2 data-i18n="faqTitle">Preguntas frecuentes</h2>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq1q">¿La ceremonia y la fiesta son en el mismo lugar?</div>
+            <div data-i18n="faq1a">Sí, todo es en Casa de los Lobos.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq2q">¿El evento es al aire libre?</div>
+            <div data-i18n="faq2a">Sí, la ceremonia y la cena son al aire libre, y luego habrá salón de baile cerrado.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq3q">¿Hay estacionamiento?</div>
+            <div data-i18n="faq3a">Sí, hay estacionamiento.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq4q">¿Se recomienda alquilar auto?</div>
+            <div data-i18n="faq4a">Si van a quedarse más días y recorrer la zona, sí, se recomienda.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq5q">¿El dress code admite sandalias elegantes?</div>
+            <div data-i18n="faq5a">No.</div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-q" data-i18n="faq6q">¿Hasta cuándo conviene reservar hospedaje?</div>
+            <div data-i18n="faq6a">Mientras antes se reserve vuelo y hospedaje, mejor, para aprovechar descuentos y promociones.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-i18n="footerText">Con muchísimo amor, Sergio y Mariano</span>
+  </footer>
+
+  <script>
+    const translations = {
+      es: {
+        heroEyebrow: "Información útil",
+        heroTitle: "Tips para Tamandaré",
+        heroSubtitle: "Todo lo que puede servirles para organizar el viaje, prepararse para el casamiento y disfrutar al máximo de Pernambuco.",
+        backButton: "Volver a la invitación",
+
+        tripTitle: "Cómo llegar",
+        tripLead: "La opción más práctica para llegar a Tamandaré es volar a Recife y desde allí trasladarse por ruta.",
+        airportTitle: "Llegada recomendada",
+        airportText: "El aeropuerto recomendado es el de Recife, Pernambuco. Desde allí, el traslado en Uber hasta Tamandaré demora aproximadamente 1 hora y 35 minutos.",
+        groomStayTitle: "Nuestra estadía en Brasil",
+        groomStayText: "Vamos a estar en Brasil entre el 14 y el 30 de marzo, por si a alguien le sirve tenerlo en cuenta al organizar el viaje.",
+        extraTripTitle: "Si tienen más días",
+        extraTripText1: "Vale muchísimo la pena sumar algunos días de viaje. Porto de Galinhas es una playa hermosa, turística y paradisíaca, y para nosotros es una parada que no se puede dejar de hacer en un viaje a Pernambuco.",
+        extraTripText2: "Quienes tengan más tiempo también pueden aprovechar para conocer Maragogi o Pipa.",
+
+        stayTitle: "Hospedajes",
+        stayCommentLabel: "Comentario:",
+        contactLabel: "Contacto:",
+        stayHelper: "Mientras antes reserven vuelo y hospedaje, mejor, para poder aprovechar descuentos y promociones.",
+
+        beautyTitle: "Belleza",
+        makeupTitle: "Maquilladoras",
+        hairTitle: "Peluqueras",
+        phoneLabel: "Teléfono:",
+
+        looksTitle: "Vestuarios de referencia",
+        lookMenTitle: "Referencia hombres",
+        lookWomenTitle: "Referencia mujeres",
+        lookMenItem1: "Trajes livianos o conjuntos formales en telas frescas.",
+        lookMenItem2: "Tonos claros, neutros o suaves funcionan muy bien.",
+        lookMenItem3: "Zapatos cerrados elegantes.",
+        lookWomenItem1: "Vestidos o conjuntos elegantes en telas livianas.",
+        lookWomenItem2: "Paleta clara, natural o suave, ideal para boda de playa.",
+        lookWomenItem3: "Calzado elegante que no sea sandalia informal.",
+        weatherTitle: "Clima y recomendaciones útiles",
+        weatherSubTitle: "Qué tener en cuenta",
+        weatherItem1: "En marzo hace calor, con humedad y clima de playa.",
+        weatherItem2: "Puede haber sol fuerte durante el día y brisa por la tarde/noche.",
+        weatherItem3: "Conviene elegir telas frescas, cómodas y respirables.",
+        weatherItem4: "Para peinados y maquillaje, es mejor contemplar humedad y viento.",
+        carryTitle: "Qué llevar",
+        carryItem1: "Documento o pasaporte según corresponda.",
+        carryItem2: "Look formal para el casamiento.",
+        carryItem3: "Malla, ropa liviana y algo cómodo para disfrutar la playa.",
+        carryItem4: "Protector solar, repelente y anteojos de sol.",
+        carryItem5: "Calzado cómodo para caminar y otro más formal para el evento.",
+
+        faqTitle: "Preguntas frecuentes",
+        faq1q: "¿La ceremonia y la fiesta son en el mismo lugar?",
+        faq1a: "Sí, todo es en Casa de los Lobos.",
+        faq2q: "¿El evento es al aire libre?",
+        faq2a: "Sí, la ceremonia y la cena son al aire libre, y luego habrá salón de baile cerrado.",
+        faq3q: "¿Hay estacionamiento?",
+        faq3a: "Sí, hay estacionamiento.",
+        faq4q: "¿Se recomienda alquilar auto?",
+        faq4a: "Si van a quedarse más días y recorrer la zona, sí, se recomienda.",
+        faq5q: "¿El dress code admite sandalias elegantes?",
+        faq5a: "No.",
+        faq6q: "¿Hasta cuándo conviene reservar hospedaje?",
+        faq6a: "Mientras antes se reserve vuelo y hospedaje, mejor, para aprovechar descuentos y promociones.",
+
+        footerText: "Con muchísimo amor, Sergio y Mariano"
+      },
+
+      pt: {
+        heroEyebrow: "Informações úteis",
+        heroTitle: "Dicas para Tamandaré",
+        heroSubtitle: "Tudo o que pode ajudar vocês a organizar a viagem, se preparar para o casamento e aproveitar Pernambuco ao máximo.",
+        backButton: "Voltar ao convite",
+
+        tripTitle: "Como chegar",
+        tripLead: "A forma mais prática de chegar a Tamandaré é voar até Recife e, de lá, seguir por estrada.",
+        airportTitle: "Chegada recomendada",
+        airportText: "O aeroporto recomendado é o de Recife, Pernambuco. De lá, o trajeto de Uber até Tamandaré leva aproximadamente 1 hora e 35 minutos.",
+        groomStayTitle: "Nossa estadia no Brasil",
+        groomStayText: "Vamos estar no Brasil entre 14 e 30 de março, caso isso ajude vocês a organizar a viagem.",
+        extraTripTitle: "Se vocês tiverem mais dias",
+        extraTripText1: "Vale muito a pena acrescentar alguns dias à viagem. Porto de Galinhas é uma praia linda, turística e paradisíaca, e para nós é uma parada imperdível em uma viagem para Pernambuco.",
+        extraTripText2: "Quem tiver mais tempo também pode aproveitar para conhecer Maragogi ou Pipa.",
+
+        stayTitle: "Hospedagens",
+        stayLead: "Aqui vocês podem encontrar opções de hospedagem. A ideia é incluir nome, comentário e contato de cada lugar.",
+        stayCommentLabel: "Comentário:",
+        contactLabel: "Contato:",
+        stayHelper: "Quanto antes vocês reservarem voo e hospedagem, melhor, para aproveitar descontos e promoções.",
+
+        beautyTitle: "Beleza",
+        beautyLead: "Deixamos aqui espaços para adicionar contatos úteis de maquiagem e cabelo.",
+        makeupTitle: "Maquiadoras",
+        hairTitle: "Cabeleireiras",
+        phoneLabel: "Telefone:",
+
+        looksTitle: "Referências de looks",
+        looksLead: "Aqui vocês podem adicionar imagens de inspiração para ajudar a pensar em looks adequados ao clima, ao lugar e ao dress code.",
+        lookMenTitle: "Referência homens",
+        lookWomenTitle: "Referência mulheres",
+        lookMenItem1: "Ternos leves ou conjuntos formais em tecidos frescos.",
+        lookMenItem2: "Tons claros, neutros ou suaves funcionam muito bem.",
+        lookMenItem3: "Sapatos fechados elegantes.",
+        lookWomenItem1: "Vestidos ou conjuntos elegantes em tecidos leves.",
+        lookWomenItem2: "Paleta clara, natural ou suave, ideal para casamento na praia.",
+        lookWomenItem3: "Calçado elegante que não seja sandália informal.",
+        weatherTitle: "Clima e recomendações úteis",
+        weatherSubTitle: "O que considerar",
+        weatherItem1: "Em março faz calor, com umidade e clima de praia.",
+        weatherItem2: "Pode haver sol forte durante o dia e brisa no fim da tarde/noite.",
+        weatherItem3: "Vale escolher tecidos frescos, confortáveis e respiráveis.",
+        weatherItem4: "Para penteado e maquiagem, é melhor considerar umidade e vento.",
+        carryTitle: "O que levar",
+        carryItem1: "Documento ou passaporte, conforme o caso.",
+        carryItem2: "Look formal para o casamento.",
+        carryItem3: "Roupa de banho, roupas leves e algo confortável para aproveitar a praia.",
+        carryItem4: "Protetor solar, repelente e óculos de sol.",
+        carryItem5: "Calçado confortável para caminhar e outro mais formal para o evento.",
+
+        faqTitle: "Perguntas frequentes",
+        faq1q: "A cerimônia e a festa são no mesmo lugar?",
+        faq1a: "Sim, tudo será na Casa de los Lobos.",
+        faq2q: "O evento será ao ar livre?",
+        faq2a: "Sim, a cerimônia e o jantar serão ao ar livre, e depois haverá salão de dança fechado.",
+        faq3q: "Há estacionamento?",
+        faq3a: "Sim, há estacionamento.",
+        faq4q: "É recomendável alugar carro?",
+        faq4a: "Se vocês forem ficar mais dias e explorar a região, sim, é recomendável.",
+        faq5q: "O dress code permite sandálias elegantes?",
+        faq5a: "Não.",
+        faq6q: "Até quando convém reservar hospedagem?",
+        faq6a: "Quanto antes vocês reservarem voo e hospedagem, melhor, para aproveitar descontos e promoções.",
+
+        footerText: "Com muito amor, Sergio e Mariano"
+      }
+    };
+
+    function applyLanguage(lang){
+      document.documentElement.lang = lang === "es" ? "es" : "pt-BR";
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if(translations[lang][key]){
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+    });
+
+    const carouselState = {
+      men: { current: 0, total: 0 },
+      women: { current: 0, total: 0 }
+    };
+
+    function initCarousel(type, files){
+      const slides = Array.from(document.querySelectorAll(`[data-${type}-slide]`));
+      const placeholder = document.querySelector(`[data-${type}-placeholder]`);
+      const dotsContainer = document.querySelector(`[data-dots="${type}"]`);
+      const validSlides = [];
+
+      slides.forEach((img, index) => {
+        const src = files[index];
+        if(!src) return;
+
+        const tester = new Image();
+        tester.onload = () => {
+          img.src = src;
+          img.style.display = "";
+          validSlides.push(img);
+
+          if(validSlides.length === 1 && placeholder){
+            placeholder.style.display = "";
+          }
+
+          renderCarousel(type, validSlides, dotsContainer);
+        };
+        tester.src = src;
+      });
+
+      renderCarousel(type, validSlides, dotsContainer);
+    }
+
+    function renderCarousel(type, validSlides, dotsContainer){
+      carouselState[type].total = validSlides.length;
+
+      const allSlides = Array.from(document.querySelectorAll(`[data-${type}-slide]`));
+      allSlides.forEach(slide => slide.classList.remove("active"));
+
+
+      dotsContainer.innerHTML = "";
+
+      if(validSlides.length === 0){
+        return;
+      }
+
+      if(carouselState[type].current >= validSlides.length){
+        carouselState[type].current = 0;
+      }
+
+      validSlides[carouselState[type].current].classList.add("active");
+
+      validSlides.forEach((_, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "carousel-dot" + (index === carouselState[type].current ? " active" : "");
+        dot.addEventListener("click", () => {
+          carouselState[type].current = index;
+          renderCarousel(type, validSlides, dotsContainer);
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      document.querySelector(`[data-prev="${type}"]`).onclick = () => {
+        carouselState[type].current =
+          (carouselState[type].current - 1 + validSlides.length) % validSlides.length;
+        renderCarousel(type, validSlides, dotsContainer);
+      };
+
+      document.querySelector(`[data-next="${type}"]`).onclick = () => {
+        carouselState[type].current =
+          (carouselState[type].current + 1) % validSlides.length;
+        renderCarousel(type, validSlides, dotsContainer);
+      };
+    }
+
+    function initLooks(){
+      initCarousel("men", [
+        "hombre1.jpg",
+        "hombre2.jpg",
+        "hombre3.jpg",
+        "hombre4.jpg",
+        "hombre5.jpg",
+        "hombre6.jpg",
+        "hombre7.jpg"
+      ]);
+
+      initCarousel("women", [
+        "mujer1.jpg",
+        "mujer2.jpg",
+        "mujer3.jpg",
+        "mujer4.jpg",
+        "mujer5.jpg",
+        "mujer6.jpg",
+        "mujer7.jpg",
+      ]);
+    }
+
+    applyLanguage("es");
+    initLooks();
+  </script>
+</body>
+</html>

@@ -1685,9 +1685,6 @@ async function enviarRSVP(nombre, respuesta){
 
   await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
     body: JSON.stringify({
       tipo: "rsvp",
       nombre: nombre,
@@ -1701,9 +1698,6 @@ async function enviarCancion(cancion){
 
   await fetch(url, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
     body: JSON.stringify({
       tipo: "song",
       cancion: cancion
@@ -1714,6 +1708,7 @@ async function enviarCancion(cancion){
   </script>
 </body>
 </html>
+
 
 
 

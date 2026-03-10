@@ -1089,7 +1089,7 @@
         openMaps: "Abrir en Google Maps",
         rsvpTitle: "Confirmación de asistencia",
         rsvpLead: "Les pedimos por favor confirmar antes de enero de 2027.",
-        guestSearchLabel: "Buscá tu nombre",
+        guestSearchLabel: "Buscá y agregá invitados",
         guestHelper: "Empezá a escribir, seleccioná un invitado y repetí el proceso si querés agregar más personas.",
         attendanceLabel: "Respuesta",
         attendanceYes: "Confirmar asistencia",
@@ -1476,11 +1476,11 @@ saveRsvpBtn.addEventListener("click", async () => {
     }
 
     showStatus(
-      statusMessage,
-      currentLang === "es"
-        ? ⁠ ¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s). ⁠
-        : ⁠ Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s). ⁠
-    );
+  statusMessage,
+  currentLang === "es"
+    ? ⁠ ¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s). ⁠
+    : ⁠ Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s). ⁠
+);
 
     selectedGuests = [];
     renderSelectedGuests();
@@ -1638,6 +1638,7 @@ saveRsvpBtn.addEventListener("click", async () => {
   </script>
 </body>
 </html>
+
 
 
 

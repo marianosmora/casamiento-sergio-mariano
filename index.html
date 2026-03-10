@@ -1486,7 +1486,7 @@ try {
   });
 
   for (const name of guestsToSend) {
-    enviarRSVP(
+    await enviarRSVP(
       name,
       status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
     );
@@ -1660,6 +1660,7 @@ async function enviarRSVP(nombre, respuesta){
   </script>
 </body>
 </html>
+
 
 
 

@@ -1475,11 +1475,11 @@ saveRsvpBtn.addEventListener("click", async () => {
       );
     }
 
-    showStatus(
+showStatus(
   statusMessage,
   currentLang === "es"
-    ? ⁠ `¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s).`⁠
-    : ⁠ `Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s).`⁠
+    ? `¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s).`
+    : `Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s).`
 );
 
     selectedGuests = [];
@@ -1638,6 +1638,7 @@ saveRsvpBtn.addEventListener("click", async () => {
   </script>
 </body>
 </html>
+
 
 
 

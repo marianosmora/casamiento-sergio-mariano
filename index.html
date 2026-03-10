@@ -1365,35 +1365,52 @@
       renderGuests(e.target.value);
     });
 
-    saveRsvpBtn.addEventListener("click", () => {
-      const status = document.querySelector('input[name="attendance"]:checked');
+saveRsvpBtn.addEventListener("click", async () => {
+  const status = document.querySelector('input[name="attendance"]:checked');
 
-      if(!selectedGuest){
-        showStatus(statusMessage, translations[currentLang].rsvpNeedGuest);
-        return;
-      }
+  if(!selectedGuest){
+    showStatus(statusMessage, translations[currentLang].rsvpNeedGuest);
+    return;
+  }
 
-      if(!status){
-        showStatus(statusMessage, translations[currentLang].rsvpNeedStatus);
-        return;
-      }
+  if(!status){
+    showStatus(statusMessage, translations[currentLang].rsvpNeedStatus);
+    return;
+  }
 
-      const payload = {
-        guest: selectedGuest,
-        attendance: status.value,
-        updatedAt: new Date().toISOString()
-      };
+  const payload = {
+    guest: selectedGuest,
+    attendance: status.value,
+    updatedAt: new Date().toISOString()
+  };
 
-      const existing = JSON.parse(localStorage.getItem("wedding_rsvp_responses") || "[]");
-      const filtered = existing.filter(item => item.guest !== selectedGuest);
-      filtered.push(payload);
-      localStorage.setItem("wedding_rsvp_responses", JSON.stringify(filtered));
+  const existing = JSON.parse(localStorage.getItem("wedding_rsvp_responses") || "[]");
+  const filtered = existing.filter(item => item.guest !== selectedGuest);
+  filtered.push(payload);
+  localStorage.setItem("wedding_rsvp_responses", JSON.stringify(filtered));
 
-      showStatus(
-        statusMessage,
-        status.value === "yes" ? translations[currentLang].rsvpSavedYes : translations[currentLang].rsvpSavedNo
-      );
-    });
+  try {
+    await enviarRSVP(
+      selectedGuest,
+      status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
+    );
+
+    showStatus(
+      statusMessage,
+      status.value === "yes"
+        ? translations[currentLang].rsvpSavedYes
+        : translations[currentLang].rsvpSavedNo
+    );
+  } catch (error) {
+    console.error(error);
+    showStatus(
+      statusMessage,
+      currentLang === "es"
+        ? "Hubo un problema al enviar la respuesta. Probá de nuevo."
+        : "Houve um problema ao enviar a resposta. Tente novamente."
+    );
+  }
+});
 
     sendSongBtn.addEventListener("click", () => {
       const suggestion = {
@@ -1515,8 +1532,25 @@
     handleCountdownCompact();
     applyLanguage("es");
     tryLoadPhotos();
+
+    async function enviarRSVP(nombre, respuesta){
+
+  const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
+
+  await fetch(url,{
+    method:"POST",
+    body: JSON.stringify({
+      nombre:nombre,
+      respuesta:respuesta
+    })
+  });
+
+}
+
+    
   </script>
 </body>
 </html>
+
 
 

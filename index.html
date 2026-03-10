@@ -1467,37 +1467,40 @@ saveRsvpBtn.addEventListener("click", async () => {
 
   localStorage.setItem("wedding_rsvp_responses", JSON.stringify(existing));
 
-  try {
-    for (const name of selectedGuests) {
-      await enviarRSVP(
-        name,
-        status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
-      );
-    }
+try {
+  const guestsToSend = [...selectedGuests];
 
-showStatus(
-  statusMessage,
-  currentLang === "es"
-    ? `¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s).`
-    : `Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s).`
-);
+  showStatus(
+    statusMessage,
+    currentLang === "es"
+      ? `¡Gracias! La respuesta fue enviada correctamente para ${guestsToSend.length} invitado(s).`
+      : `Obrigado! A resposta foi enviada com sucesso para ${guestsToSend.length} convidado(s).`
+  );
 
-    selectedGuests = [];
-    renderSelectedGuests();
-    guestSearch.value = "";
-    searchResults.innerHTML = "";
-    document.querySelectorAll('input[name="attendance"]').forEach(input => input.checked = false);
+  selectedGuests = [];
+  renderSelectedGuests();
+  guestSearch.value = "";
+  searchResults.innerHTML = "";
+  document.querySelectorAll('input[name="attendance"]').forEach(input => {
+    input.checked = false;
+  });
 
-  } catch (error) {
-    console.error(error);
-    showStatus(
-      statusMessage,
-      currentLang === "es"
-        ? "Hubo un problema al enviar la respuesta. Probá de nuevo."
-        : "Houve um problema ao enviar a resposta. Tente novamente."
+  for (const name of guestsToSend) {
+    enviarRSVP(
+      name,
+      status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
     );
   }
-});
+
+} catch (error) {
+  console.error(error);
+  showStatus(
+    statusMessage,
+    currentLang === "es"
+      ? "Hubo un problema al enviar la respuesta. Probá de nuevo."
+      : "Houve um problema ao enviar a resposta. Tente novamente."
+  );
+}
     
     sendSongBtn.addEventListener("click", () => {
       const suggestion = {
@@ -1638,6 +1641,7 @@ showStatus(
   </script>
 </body>
 </html>
+
 
 
 

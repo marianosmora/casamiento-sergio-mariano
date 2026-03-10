@@ -914,7 +914,7 @@
 <div id="searchResults" class="search-results" aria-live="polite"></div>
 
 <div id="selectedGuests" class="selected-guest" style="display:none;">
-  <strong style="display:block; margin-bottom:8px;">Invitados seleccionados</strong>
+  <strong data-i18n="selectedGuestsTitle" style="display:block; margin-bottom:8px;">Invitados seleccionados</strong>
   <div id="selectedGuestsList" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
 </div>
           </div>
@@ -940,7 +940,7 @@
 
 <div id="loadingMessage" class="loading-box" aria-live="polite">
   <div class="spinner"></div>
-  <span id="loadingText">Enviando...</span>
+<span id="loadingText" data-i18n="loadingText">Enviando...</span>
 </div>
 
 <div id="statusMessage" class="status-message ok" aria-live="polite"></div>
@@ -1101,6 +1101,8 @@
       es: {
         heroEyebrow: "Invitación",
         heroSubtitle: "¡Nos vamos a casar!",
+        selectedGuestsTitle: "Invitados seleccionados",
+        loadingText: "Enviando...",
         dateLabel: "Fecha",
         dateValue: "Sábado 27 de marzo de 2027",
         timeLabel: "Horario",
@@ -1169,6 +1171,8 @@
       pt: {
         heroEyebrow: "Convite",
         heroSubtitle: "¡Vamos nos casar!",
+        selectedGuestsTitle: "Convidados selecionados",
+        loadingText: "Enviando...",
         dateLabel: "Data",
         dateValue: "Sábado, 27 de março de 2027",
         timeLabel: "Horário",
@@ -1708,6 +1712,7 @@ async function enviarCancion(cancion){
   </script>
 </body>
 </html>
+
 
 
 

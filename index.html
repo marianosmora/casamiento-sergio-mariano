@@ -1503,24 +1503,32 @@ try {
 }
 });
     
-    sendSongBtn.addEventListener("click", () => {
-      const suggestion = {
-        song: songName.value.trim(),
-        createdAt: new Date().toISOString()
-      };
+sendSongBtn.addEventListener("click", async () => {
+  const suggestion = {
+    song: songName.value.trim(),
+    createdAt: new Date().toISOString()
+  };
 
-      if(!suggestion.song){
-        showStatus(songMessage, translations[currentLang].songNeedName);
-        return;
-      }
+  if (!suggestion.song) {
+    showStatus(songMessage, translations[currentLang].songNeedName);
+    return;
+  }
 
-      const existing = JSON.parse(localStorage.getItem("wedding_song_suggestions") || "[]");
-      existing.push(suggestion);
-      localStorage.setItem("wedding_song_suggestions", JSON.stringify(existing));
+  const existing = JSON.parse(localStorage.getItem("wedding_song_suggestions") || "[]");
+  existing.push(suggestion);
+  localStorage.setItem("wedding_song_suggestions", JSON.stringify(existing));
 
-      songName.value = "";
-      showStatus(songMessage, translations[currentLang].songSaved);
-    });
+  showStatus(songMessage, translations[currentLang].songSaved);
+
+  const songToSend = suggestion.song;
+  songName.value = "";
+
+  try {
+    await enviarCancion(songToSend);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
     function showStatus(element, text){
       element.textContent = text;
@@ -1624,24 +1632,35 @@ try {
     applyLanguage("es");
     tryLoadPhotos();
 
-    async function enviarRSVP(nombre, respuesta){
-
+async function enviarRSVP(nombre, respuesta){
   const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
 
-  await fetch(url,{
-    method:"POST",
+  await fetch(url, {
+    method: "POST",
     body: JSON.stringify({
-      nombre:nombre,
-      respuesta:respuesta
+      tipo: "rsvp",
+      nombre: nombre,
+      respuesta: respuesta
     })
   });
-
 }
 
+    async function enviarCancion(cancion){
+  const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
+
+  await fetch(url, {
+    method: "POST",
+    body: JSON.stringify({
+      tipo: "song",
+      cancion: cancion
+    })
+  });
+}
     
   </script>
 </body>
 </html>
+
 
 
 

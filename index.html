@@ -744,6 +744,39 @@
         grid-template-columns: repeat(4, 1fr);
       }
     }
+    .loading-box{
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 16px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  background: rgba(130,183,216,0.12);
+  border: 1px solid rgba(130,183,216,0.22);
+  color: var(--green-dark);
+  font-weight: 700;
+}
+
+.loading-box.show{
+  display: flex;
+}
+
+.spinner{
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(95,125,91,0.18);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+    
   </style>
 </head>
 <body>
@@ -901,11 +934,17 @@
               </div>
             </div>
 
-            <button id="saveRsvpBtn" class="btn btn-primary" type="button" data-i18n="saveRsvp">
-              Enviar respuesta
-            </button>
+<button id="saveRsvpBtn" class="btn btn-primary" type="button" data-i18n="saveRsvp">
+  Enviar respuesta
+</button>
 
-            <div id="statusMessage" class="status-message ok" aria-live="polite"></div>
+<div id="loadingMessage" class="loading-box" aria-live="polite">
+  <div class="spinner"></div>
+  <span id="loadingText">Enviando...</span>
+</div>
+
+<div id="statusMessage" class="status-message ok" aria-live="polite"></div>
+
           </div>
         </div>
       </div>
@@ -1322,7 +1361,8 @@
 const selectedGuestsList = document.getElementById("selectedGuestsList");
 const saveRsvpBtn = document.getElementById("saveRsvpBtn");
 const statusMessage = document.getElementById("statusMessage");
-
+const loadingMessage = document.getElementById("loadingMessage");
+const loadingText = document.getElementById("loadingText");
 const songName = document.getElementById("songName");
 const sendSongBtn = document.getElementById("sendSongBtn");
 const songMessage = document.getElementById("songMessage");
@@ -1448,6 +1488,11 @@ saveRsvpBtn.addEventListener("click", async () => {
     return;
   }
 
+  statusMessage.classList.remove("show");
+  saveRsvpBtn.disabled = true;
+  saveRsvpBtn.style.opacity = "0.7";
+  saveRsvpBtn.style.cursor = "not-allowed";
+
   const existing = JSON.parse(localStorage.getItem("wedding_rsvp_responses") || "[]");
 
   selectedGuests.forEach(name => {
@@ -1467,40 +1512,57 @@ saveRsvpBtn.addEventListener("click", async () => {
 
   localStorage.setItem("wedding_rsvp_responses", JSON.stringify(existing));
 
-try {
-  const guestsToSend = [...selectedGuests];
+  try {
+    const guestsToSend = [...selectedGuests];
+    const total = guestsToSend.length;
 
-  showStatus(
-    statusMessage,
-    currentLang === "es"
+    for(let i = 0; i < total; i++){
+      const name = guestsToSend[i];
+
+showLoading(
+  currentLang === "es"
+    ? `Enviando ${i + 1} de ${total}...`
+    : `Enviando ${i + 1} de ${total}...`
+);
+
+      await enviarRSVP(
+        name,
+        status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
+      );
+    }
+
+    hideLoading();
+
+    showStatus(
+      statusMessage,
+      currentLang === "es"
       ? `¡Gracias! La respuesta fue enviada correctamente para ${guestsToSend.length} invitado(s).`
       : `Obrigado! A resposta foi enviada com sucesso para ${guestsToSend.length} convidado(s).`
-  );
-
-  selectedGuests = [];
-  renderSelectedGuests();
-  guestSearch.value = "";
-  searchResults.innerHTML = "";
-  document.querySelectorAll('input[name="attendance"]').forEach(input => {
-    input.checked = false;
-  });
-
-  for (const name of guestsToSend) {
-    await enviarRSVP(
-      name,
-      status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
     );
-  }
 
-} catch (error) {
-  console.error(error);
-  showStatus(
-    statusMessage,
-    currentLang === "es"
-      ? "Hubo un problema al enviar la respuesta. Probá de nuevo."
-      : "Houve um problema ao enviar a resposta. Tente novamente."
-  );
-}
+    selectedGuests = [];
+    renderSelectedGuests();
+    guestSearch.value = "";
+    searchResults.innerHTML = "";
+    document.querySelectorAll('input[name="attendance"]').forEach(input => {
+      input.checked = false;
+    });
+
+  } catch (error) {
+    console.error(error);
+    hideLoading();
+
+    showStatus(
+      statusMessage,
+      currentLang === "es"
+        ? "Hubo un problema al enviar la respuesta. Probá de nuevo."
+        : "Houve um problema ao enviar a resposta. Tente novamente."
+    );
+  } finally {
+    saveRsvpBtn.disabled = false;
+    saveRsvpBtn.style.opacity = "1";
+    saveRsvpBtn.style.cursor = "pointer";
+  }
 });
     
 sendSongBtn.addEventListener("click", async () => {
@@ -1539,6 +1601,15 @@ sendSongBtn.addEventListener("click", async () => {
         block: "center"
       });
     }
+
+    function showLoading(text){
+  loadingText.textContent = text;
+  loadingMessage.classList.add("show");
+}
+
+function hideLoading(){
+  loadingMessage.classList.remove("show");
+}
 
     document.querySelectorAll(".copy-btn").forEach(btn => {
       btn.addEventListener("click", async () => {
@@ -1601,28 +1672,6 @@ sendSongBtn.addEventListener("click", async () => {
       }
     }
 
-    function tryLoadPhotos(){
-      const slots = [
-        "fotos/foto-1.webp",
-        "fotos/foto-2.webp",
-        "fotos/foto-3.webp"
-      ];
-
-      document.querySelectorAll("[data-photo]").forEach((img, index) => {
-        const testSrc = slots[index];
-        const tester = new Image();
-
-        tester.onload = () => {
-          img.src = testSrc;
-          img.style.display = "block";
-          const parent = img.parentElement;
-          parent.querySelectorAll("div").forEach(div => div.style.display = "none");
-        };
-
-        tester.src = testSrc;
-      });
-    }
-
     window.addEventListener("scroll", handleCountdownCompact);
     window.addEventListener("resize", handleCountdownCompact);
 
@@ -1630,13 +1679,15 @@ sendSongBtn.addEventListener("click", async () => {
     setInterval(updateCountdown, 1000);
     handleCountdownCompact();
     applyLanguage("es");
-    tryLoadPhotos();
 
 async function enviarRSVP(nombre, respuesta){
   const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
 
   await fetch(url, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       tipo: "rsvp",
       nombre: nombre,
@@ -1645,11 +1696,14 @@ async function enviarRSVP(nombre, respuesta){
   });
 }
 
-    async function enviarCancion(cancion){
+async function enviarCancion(cancion){
   const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
 
   await fetch(url, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({
       tipo: "song",
       cancion: cancion
@@ -1660,6 +1714,7 @@ async function enviarRSVP(nombre, respuesta){
   </script>
 </body>
 </html>
+
 
 
 

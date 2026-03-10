@@ -435,15 +435,38 @@
       border-color: rgba(95,125,91,0.25);
     }
 
-    .selected-guest{
-      margin-top: 12px;
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(130,183,216,0.12);
-      border: 1px solid rgba(130,183,216,0.22);
-      font-weight: 700;
-      color: var(--green-dark);
-    }
+.selected-guest{
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(130,183,216,0.12);
+  border: 1px solid rgba(130,183,216,0.22);
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+.selected-chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(95,125,91,0.16);
+  color: var(--green-dark);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+.remove-chip{
+  border: none;
+  background: transparent;
+  color: #7b8f86;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0;
+}
 
     .status-box{
       display: grid;
@@ -840,7 +863,7 @@
         <div class="rsvp-layout">
           <div>
             <div class="field">
-              <label for="guestSearch" data-i18n="guestSearchLabel">Buscá tu nombre</label>
+              <label for="guestSearch" data-i18n="guestSearchLabel">Buscá y agregá invitados</label>
               <input
                 id="guestSearch"
                 class="input"
@@ -855,8 +878,12 @@
               </div>
             </div>
 
-            <div id="searchResults" class="search-results" aria-live="polite"></div>
-            <div id="selectedGuest" class="selected-guest" style="display:none;"></div>
+<div id="searchResults" class="search-results" aria-live="polite"></div>
+
+<div id="selectedGuests" class="selected-guest" style="display:none;">
+  <strong style="display:block; margin-bottom:8px;">Invitados seleccionados</strong>
+  <div id="selectedGuestsList" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+</div>
           </div>
 
           <div>
@@ -1063,7 +1090,7 @@
         rsvpTitle: "Confirmación de asistencia",
         rsvpLead: "Les pedimos por favor confirmar antes de enero de 2027.",
         guestSearchLabel: "Buscá tu nombre",
-        guestHelper: "Empezá a escribir y seleccioná tu nombre en la lista.",
+        guestHelper: "Empezá a escribir, seleccioná un invitado y repetí el proceso si querés agregar más personas.",
         attendanceLabel: "Respuesta",
         attendanceYes: "Confirmar asistencia",
         attendanceNo: "No podré asistir",
@@ -1093,7 +1120,7 @@
         footerText: "Con muchísimo amor, Sergio y Mariano",
         rsvpSavedYes: "¡Gracias! Tu respuesta fue enviada correctamente y tu asistencia quedó confirmada.",
         rsvpSavedNo: "Tu respuesta fue enviada correctamente. Gracias por avisarnos.",
-        rsvpNeedGuest: "Primero seleccioná tu nombre en la lista.",
+        rsvpNeedGuest: "Primero seleccioná al menos un invitado en la lista.",
         rsvpNeedStatus: "Seleccioná una respuesta antes de enviar.",
         songSaved: "¡Gracias por la sugerencia! Quedó guardada en este navegador.",
         copyOk: "Dato copiado al portapapeles",
@@ -1130,8 +1157,8 @@
         openMaps: "Abrir no Google Maps",
         rsvpTitle: "Confirmação de presença",
         rsvpLead: "Pedimos, por favor, que confirmem até janeiro de 2027.",
-        guestSearchLabel: "Procure seu nome",
-        guestHelper: "Comece a digitar e selecione seu nome na lista.",
+        guestSearchLabel: "Busque e adicione convidados",
+        guestHelper: "Comece a digitar, selecione um convidado e repita o proceso se quiser adicionar mais pessoas.",
         attendanceLabel: "Resposta",
         attendanceYes: "Confirmar presença",
         attendanceNo: "Não poderei comparecer",
@@ -1162,7 +1189,7 @@
         footerText: "Com muito amor, Sergio e Mariano",
         rsvpSavedYes: "Obrigado! Sua resposta foi enviada com sucesso e sua presença foi confirmada.",
         rsvpSavedNo: "Sua resposta foi enviada com sucesso. Obrigado por nos avisar.",
-        rsvpNeedGuest: "Primeiro selecione seu nome na lista.",
+        rsvpNeedGuest: "Primeiro selecione pelo menos um convidado na lista.",
         rsvpNeedStatus: "Selecione uma resposta antes de enviar.",
         songSaved: "Obrigado pela sugestão! Ela ficou salva neste navegador.",
         copyOk: "Dado copiado para a área de transferência",
@@ -1291,15 +1318,16 @@
 
     const guestSearch = document.getElementById("guestSearch");
     const searchResults = document.getElementById("searchResults");
-    const selectedGuestBox = document.getElementById("selectedGuest");
-    const saveRsvpBtn = document.getElementById("saveRsvpBtn");
-    const statusMessage = document.getElementById("statusMessage");
+    const selectedGuestsBox = document.getElementById("selectedGuests");
+const selectedGuestsList = document.getElementById("selectedGuestsList");
+const saveRsvpBtn = document.getElementById("saveRsvpBtn");
+const statusMessage = document.getElementById("statusMessage");
 
-    const songName = document.getElementById("songName");
-    const sendSongBtn = document.getElementById("sendSongBtn");
-    const songMessage = document.getElementById("songMessage");
+const songName = document.getElementById("songName");
+const sendSongBtn = document.getElementById("sendSongBtn");
+const songMessage = document.getElementById("songMessage");
 
-    let selectedGuest = null;
+let selectedGuests = [];
 
     function applyLanguage(lang){
       currentLang = lang;
@@ -1331,36 +1359,77 @@
       btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
     });
 
-    function renderGuests(query = ""){
-      const q = query.toLowerCase().trim();
-      searchResults.innerHTML = "";
+function renderGuests(query = ""){
+  const q = query.toLowerCase().trim();
+  searchResults.innerHTML = "";
 
-      if(!q) return;
+  if(!q) return;
 
-      const results = guests.filter(name => name.toLowerCase().includes(q));
+  const results = guests.filter(name =>
+    name.toLowerCase().includes(q) && !selectedGuests.includes(name)
+  );
 
-      if(!results.length){
-        const empty = document.createElement("div");
-        empty.className = "guest-item";
-        empty.textContent = translations[currentLang].searchEmpty;
-        searchResults.appendChild(empty);
-        return;
+  if(!results.length){
+    const empty = document.createElement("div");
+    empty.className = "guest-item";
+    empty.textContent = translations[currentLang].searchEmpty;
+    searchResults.appendChild(empty);
+    return;
+  }
+
+  results.forEach(name => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "guest-item";
+    item.textContent = name;
+
+    item.addEventListener("click", () => {
+      if(!selectedGuests.includes(name)){
+        selectedGuests.push(name);
+        renderSelectedGuests();
       }
+      guestSearch.value = "";
+      searchResults.innerHTML = "";
+    });
 
-      results.forEach(name => {
-        const item = document.createElement("button");
-        item.type = "button";
-        item.className = "guest-item" + (selectedGuest === name ? " active" : "");
-        item.textContent = name;
-        item.addEventListener("click", () => {
-          selectedGuest = name;
-          selectedGuestBox.style.display = "block";
-          selectedGuestBox.textContent = name;
-          renderGuests(guestSearch.value.trim());
-        });
-        searchResults.appendChild(item);
-      });
-    }
+    searchResults.appendChild(item);
+  });
+}
+
+    function renderSelectedGuests(){
+  selectedGuestsList.innerHTML = "";
+
+  if(selectedGuests.length === 0){
+    selectedGuestsBox.style.display = "none";
+    return;
+  }
+
+  selectedGuestsBox.style.display = "block";
+
+  selectedGuests.forEach(name => {
+    const chip = document.createElement("div");
+    chip.className = "selected-chip";
+
+    const text = document.createElement("span");
+    text.textContent = name;
+
+    const remove = document.createElement("button");
+    remove.type = "button";
+    remove.className = "remove-chip";
+    remove.setAttribute("aria-label", "Quitar invitado");
+    remove.textContent = "×";
+
+    remove.addEventListener("click", () => {
+      selectedGuests = selectedGuests.filter(g => g !== name);
+      renderSelectedGuests();
+      renderGuests(guestSearch.value.trim());
+    });
+
+    chip.appendChild(text);
+    chip.appendChild(remove);
+    selectedGuestsList.appendChild(chip);
+  });
+}
 
     guestSearch.addEventListener("input", (e) => {
       renderGuests(e.target.value);
@@ -1369,7 +1438,7 @@
 saveRsvpBtn.addEventListener("click", async () => {
   const status = document.querySelector('input[name="attendance"]:checked');
 
-  if(!selectedGuest){
+  if(selectedGuests.length === 0){
     showStatus(statusMessage, translations[currentLang].rsvpNeedGuest);
     return;
   }
@@ -1379,29 +1448,46 @@ saveRsvpBtn.addEventListener("click", async () => {
     return;
   }
 
-  const payload = {
-    guest: selectedGuest,
-    attendance: status.value,
-    updatedAt: new Date().toISOString()
-  };
-
   const existing = JSON.parse(localStorage.getItem("wedding_rsvp_responses") || "[]");
-  const filtered = existing.filter(item => item.guest !== selectedGuest);
-  filtered.push(payload);
-  localStorage.setItem("wedding_rsvp_responses", JSON.stringify(filtered));
+
+  selectedGuests.forEach(name => {
+    const payload = {
+      guest: name,
+      attendance: status.value,
+      updatedAt: new Date().toISOString()
+    };
+
+    const filteredIndex = existing.findIndex(item => item.guest === name);
+    if(filteredIndex >= 0){
+      existing[filteredIndex] = payload;
+    } else {
+      existing.push(payload);
+    }
+  });
+
+  localStorage.setItem("wedding_rsvp_responses", JSON.stringify(existing));
 
   try {
-    await enviarRSVP(
-      selectedGuest,
-      status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
-    );
+    for (const name of selectedGuests) {
+      await enviarRSVP(
+        name,
+        status.value === "yes" ? "Confirmo asistencia" : "No puede asistir"
+      );
+    }
 
     showStatus(
       statusMessage,
-      status.value === "yes"
-        ? translations[currentLang].rsvpSavedYes
-        : translations[currentLang].rsvpSavedNo
+      currentLang === "es"
+        ? ⁠ ¡Gracias! La respuesta fue enviada correctamente para ${selectedGuests.length} invitado(s). ⁠
+        : ⁠ Obrigado! A resposta foi enviada com sucesso para ${selectedGuests.length} convidado(s). ⁠
     );
+
+    selectedGuests = [];
+    renderSelectedGuests();
+    guestSearch.value = "";
+    searchResults.innerHTML = "";
+    document.querySelectorAll('input[name="attendance"]').forEach(input => input.checked = false);
+
   } catch (error) {
     console.error(error);
     showStatus(
@@ -1412,7 +1498,7 @@ saveRsvpBtn.addEventListener("click", async () => {
     );
   }
 });
-
+    
     sendSongBtn.addEventListener("click", () => {
       const suggestion = {
         song: songName.value.trim(),
@@ -1552,6 +1638,7 @@ saveRsvpBtn.addEventListener("click", async () => {
   </script>
 </body>
 </html>
+
 
 
 

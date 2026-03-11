@@ -334,9 +334,12 @@
       letter-spacing: .08em;
     }
 
-    .dresscode-link{
+.dresscode-link-wrap{
+  padding: 8px 6px 0 6px;
+}
+
+.dresscode-link{
   display: inline-block;
-  margin-top: 10px;
   color: var(--green-dark);
   font-weight: 700;
   text-decoration: underline;
@@ -879,7 +882,9 @@
 <div class="detail-row">
   <strong data-i18n="detailDressLabel">Dress code</strong>
   <div data-i18n="dressValue">Elegante (sugerimos una paleta en tonos claros, suaves y naturales)</div>
+</div>
 
+<div class="dresscode-link-wrap">
   <a
     id="dresscodeLink"
     class="dresscode-link"
@@ -1774,6 +1779,7 @@ async function enviarCancion(cancion){
   </script>
 </body>
 </html>
+
 
 
 

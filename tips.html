@@ -442,7 +442,7 @@
         </p>
 
         <div class="actions">
-          <a href="index.html" class="btn btn-secondary" data-i18n="backButton">Volver a la invitación</a>
+          <a id="backLink" href="index.html" class="btn btn-secondary" data-i18n="backButton">Volver a la invitación</a>
         </div>
       </div>
     </section>
@@ -816,24 +816,36 @@
       }
     };
 
-    function applyLanguage(lang){
-      document.documentElement.lang = lang === "es" ? "es" : "pt-BR";
+function applyLanguage(lang){
+  document.documentElement.lang = lang === "es" ? "es" : "pt-BR";
 
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.dataset.i18n;
-        if(translations[lang][key]){
-          el.textContent = translations[lang][key];
-        }
-      });
-
-      document.querySelectorAll(".lang-btn").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.dataset.i18n;
+    if(translations[lang][key]){
+      el.textContent = translations[lang][key];
     }
+  });
 
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
-    });
+  document.querySelectorAll(".lang-btn").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.lang === lang);
+  });
+
+  const backLink = document.getElementById("backLink");
+  if(backLink){
+    backLink.href = `index.html?lang=${lang}`;
+  }
+}
+
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.dataset.lang;
+    applyLanguage(lang);
+
+    const url = new URL(window.location);
+    url.searchParams.set("lang", lang);
+    window.history.replaceState({}, "", url);
+  });
+});
 
     const carouselState = {
       men: { current: 0, total: 0 },
@@ -932,12 +944,22 @@
         "mujer7.jpg",
       ]);
     }
+function getLangFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
 
-    applyLanguage("es");
-    initLooks();
+  if(lang === "pt" || lang === "es"){
+    return lang;
+  }
+
+  return "es";
+}
+applyLanguage(getLangFromUrl());
+initLooks();
   </script>
 </body>
 </html>
+
 
 
 

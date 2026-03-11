@@ -334,6 +334,21 @@
       letter-spacing: .08em;
     }
 
+    .dresscode-link{
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--green-dark);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.95rem;
+  transition: .2s ease;
+}
+
+.dresscode-link:hover{
+  opacity: 0.8;
+}
+
     .map-box{
       min-height: 100%;
       display: flex;
@@ -861,10 +876,19 @@
               <strong data-i18n="detailVenueLabel">Dirección</strong>
               <div>Casa de los lobos: Rua Alm. Tamandare, 130</div>
             </div>
-            <div class="detail-row">
-              <strong data-i18n="detailDressLabel">Dress code</strong>
-              <div data-i18n="dressValue">Elegante (sugerimos una paleta en tonos claros, suaves y naturales)</div>
-            </div>
+<div class="detail-row">
+  <strong data-i18n="detailDressLabel">Dress code</strong>
+  <div data-i18n="dressValue">Elegante (sugerimos una paleta en tonos claros, suaves y naturales)</div>
+
+  <a
+    id="dresscodeLink"
+    class="dresscode-link"
+    href="tips.html?lang=es#vestuario"
+    data-i18n="dresscodeLinkText"
+  >
+    Ver referencias de vestuario
+  </a>
+</div>
           </div>
 
           <div class="card map-box">
@@ -1133,6 +1157,7 @@
         detailVenueLabel: "Dirección",
         detailDressLabel: "Dress code",
         dressValue: "Elegante (sugerimos una paleta en tonos claros, suaves y naturales)",
+        dresscodeLinkText: "Ver referencias de vestuario",
         tripTitle: "Tamandaré, Pernambuco, Brasil",
         tripText: "Un destino de playa, naturaleza y celebración. Más abajo van a encontrar un acceso a recomendaciones de hospedaje, belleza y logística.",
         openMaps: "Abrir en Google Maps",
@@ -1204,6 +1229,7 @@
         detailVenueLabel: "Endereço",
         detailDressLabel: "Dress code",
         dressValue: "Elegante (sugerimos uma paleta em tons claros, suaves e naturais)",
+        dresscodeLinkText: "Ver referências de vestuário",
         tripTitle: "Tamandaré, Pernambuco, Brasil",
         tripText: "Um destino de praia, natureza e celebração. Mais abaixo vocês vão encontrar um acesso às recomendações de hospedagem, beleza e logística.",
         openMaps: "Abrir no Google Maps",
@@ -1411,6 +1437,11 @@ let selectedGuests = [];
 if(tipsLink){
   tipsLink.href = `tips.html?lang=${lang}`;
 }
+const dresscodeLink = document.getElementById("dresscodeLink");
+if(dresscodeLink){
+  dresscodeLink.href = `tips.html?lang=${lang}#vestuario`;
+}
+      
     }
 
 document.querySelectorAll(".lang-btn").forEach(btn => {
@@ -1743,6 +1774,7 @@ async function enviarCancion(cancion){
   </script>
 </body>
 </html>
+
 
 
 

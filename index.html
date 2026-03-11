@@ -1063,9 +1063,9 @@
         <p class="section-lead" style="margin-inline:auto;" data-i18n="tipsLead">
           Acá van a poder encontrar maquilladoras, peinadoras, hospedajes, traslados y otras sugerencias útiles para organizar el viaje.
         </p>
-        <a class="btn btn-primary" href="tips.html" data-i18n="tipsButton">
-          Ver tips y recomendaciones
-        </a>
+<a id="tipsLink" class="btn btn-primary" href="tips.html" data-i18n="tipsButton">
+  Ver tips y recomendaciones
+</a>
       </div>
     </section>
 
@@ -1394,11 +1394,22 @@ let selectedGuests = [];
       });
 
       renderGuests(guestSearch.value.trim());
+      const tipsLink = document.getElementById("tipsLink");
+if(tipsLink){
+  tipsLink.href = `tips.html?lang=${lang}`;
+}
     }
 
-    document.querySelectorAll(".lang-btn").forEach(btn => {
-      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
-    });
+document.querySelectorAll(".lang-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.dataset.lang;
+    applyLanguage(lang);
+
+    const url = new URL(window.location);
+    url.searchParams.set("lang", lang);
+    window.history.replaceState({}, "", url);
+  });
+});
 
 function renderGuests(query = ""){
   const q = query.toLowerCase().trim();
@@ -1679,7 +1690,17 @@ function hideLoading(){
     updateCountdown();
     setInterval(updateCountdown, 1000);
     handleCountdownCompact();
-    applyLanguage("es");
+    function getLangFromUrl(){
+  const params = new URLSearchParams(window.location.search);
+  const lang = params.get("lang");
+
+  if(lang === "pt" || lang === "es"){
+    return lang;
+  }
+
+  return "es";
+}
+applyLanguage(getLangFromUrl());
 
 async function enviarRSVP(nombre, respuesta){
   const url = "https://script.google.com/macros/s/AKfycbyV-svpMxyPypMTsotIpUOIvfK9iKXqksBZXvfNGgKiuM159tRepOacNhNWlJ_btRn8nQ/exec";
@@ -1709,6 +1730,7 @@ async function enviarCancion(cancion){
   </script>
 </body>
 </html>
+
 
 
 

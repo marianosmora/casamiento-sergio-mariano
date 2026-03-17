@@ -230,12 +230,12 @@
       font-weight: 500;
     }
 
-    .hero-meta{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 30px;
-    }
+.hero-meta{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
 
     .meta-card{
       background: rgba(255,255,255,0.75);
@@ -833,20 +833,16 @@
         <h1>Sergio & Mariano</h1>
         <p class="hero-subtitle" data-i18n="heroSubtitle">¡Nos vamos a casar!</p>
 
-        <div class="hero-meta">
-          <div class="meta-card">
-            <strong data-i18n="dateLabel">Fecha</strong>
-            <div data-i18n="dateValue">Sábado 27 de marzo de 2027</div>
-          </div>
-          <div class="meta-card">
-            <strong data-i18n="timeLabel">Horario</strong>
-            <div data-i18n="timeValue">16:00 hs</div>
-          </div>
-          <div class="meta-card">
-            <strong data-i18n="placeLabel">Lugar</strong>
-            <div data-i18n="placeValue">Tamandaré, Pernambuco, Brasil</div>
-          </div>
-        </div>
+<div class="hero-meta">
+  <div class="meta-card">
+    <strong data-i18n="dateLabel">Cuándo?</strong>
+    <div data-i18n="dateValue">Sábado 27 de marzo de 2027</div>
+  </div>
+  <div class="meta-card">
+    <strong data-i18n="placeLabel">Dónde?</strong>
+    <div data-i18n="placeValue">Tamandaré, Pernambuco, Brasil</div>
+  </div>
+</div>
 
         <div class="actions" style="justify-content:center;">
           <a href="#rsvp" class="btn btn-primary" data-i18n="ctaConfirm">Confirmar asistencia</a>
@@ -1138,8 +1134,8 @@
         heroSubtitle: "¡Nos vamos a casar!",
         selectedGuestsTitle: "Invitados seleccionados",
         loadingText: "Enviando...",
-        dateLabel: "Fecha",
-        dateValue: "Sábado 27 de marzo de 2027",
+dateLabel: "¿Cuándo?",
+placeLabel: "¿Dónde?",
         timeLabel: "Horario",
         timeValue: "16:00 hs",
         placeLabel: "Lugar",
@@ -1156,7 +1152,7 @@
         eventTitle: "Detalles del evento",
         eventLead: "Queremos compartir con ustedes una celebración íntima, consciente y llena de amor, en un lugar que nos encanta.",
         detailDateLabel: "Fecha",
-        detailTimeLabel: "Horario de invitación",
+        detailTimeLabel: "Horario",
         detailVenueLabel: "Dirección",
         detailDressLabel: "Dress code",
         dressValue: "Elegante (sugerimos una paleta en tonos claros, suaves y naturales)",

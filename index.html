@@ -759,12 +759,7 @@
       body.countdown-compact .countdown-sticky-item small{
         font-size: 0.54rem;
       }
-      
-  #backToTop{
-    bottom: 88px !important;
-    right: 16px !important;
-    left: auto !important;
-  }
+
     }
 
     @media (max-width: 600px){
@@ -812,31 +807,6 @@
   to{
     transform: rotate(360deg);
   }
-}
-
-    #backToTop{
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: none;
-  background: var(--green);
-  color: white;
-  font-size: 20px;
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1100;
-  transition: .2s ease;
-}
-
-#backToTop:hover{
-  transform: translateY(-2px);
 }
     
   </style>
@@ -1172,8 +1142,6 @@
   <footer>
     <span data-i18n="footerText">Con muchísimo amor, Sergio y Mariano</span>
   </footer>
-
-  <button id="backToTop" aria-label="Volver arriba">↑</button>
 
   <script>
     const translations = {
@@ -1814,23 +1782,6 @@ async function enviarCancion(cancion){
     })
   });
 }
-
-    const backToTopBtn = document.getElementById("backToTop");
-
-window.addEventListener("scroll", () => {
-  if(window.scrollY > 5000){
-    backToTopBtn.style.display = "flex";
-  } else {
-    backToTopBtn.style.display = "none";
-  }
-});
-
-backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-});    
   </script>  
 </body>
 </html>

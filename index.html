@@ -808,6 +808,121 @@
     transform: rotate(360deg);
   }
 }
+
+    .story-carousel{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.story-carousel-track-wrap{
+  width: min(100%, 760px);
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.story-carousel-track{
+  display: flex;
+  transition: transform 0.45s ease;
+  will-change: transform;
+}
+
+.story-slide{
+  min-width: 100%;
+  flex: 0 0 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.story-slide img{
+  display: block;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+.story-carousel-btn{
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.92);
+  color: var(--green-dark);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.2s ease, background 0.2s ease;
+  flex-shrink: 0;
+}
+
+.story-carousel-btn:hover{
+  transform: scale(1.06);
+  background: #fff;
+}
+
+.story-dots{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.story-dot{
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(127,163,122,0.28);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.story-dot.active{
+  background: var(--green);
+  transform: scale(1.2);
+}
+
+.story-caption{
+  position: absolute;
+  inset: auto 14px 14px 14px;
+  background: rgba(255,255,255,0.84);
+  backdrop-filter: blur(8px);
+  padding: 10px 12px;
+  border-radius: 14px;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+@media (max-width: 768px){
+  .story-slide img{
+    height: 420px;
+  }
+
+  .story-carousel{
+    gap: 8px;
+  }
+
+  .story-carousel-btn{
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 520px){
+  .story-slide img{
+    height: 320px;
+  }
+}
     
   </style>
 </head>
@@ -1076,22 +1191,81 @@
       <div class="card">
         <h2 data-i18n="photosTitle">Seguimos escribiendo capítulos de nuestra historia</h2>
 
-        <div class="photos-grid">
-          <div class="photo-slot">
-            <img src="Imagen2.jpg" alt="" style="" data-photo />
-            <div class="photo-overlay">San Luis 2021</div>   
-          </div>
+<div class="story-carousel" id="storyCarousel">
+  <button class="story-carousel-btn prev" type="button" aria-label="Foto anterior">
+    &#10094;
+  </button>
 
-          <div class="photo-slot">
-            <img src="Imagen3.jpg" alt="" style="" data-photo />
-            <div class="photo-overlay">Mendoza 2023</div>
-          </div>
+  <div class="story-carousel-track-wrap">
+    <div class="story-carousel-track" id="storyCarouselTrack">
+      <div class="story-slide">
+        <img src="Imagen2.jpg" alt="San Luis 2021" />
+        <div class="story-caption">San Luis 2021</div>
+      </div>
 
-          <div class="photo-slot">
-            <img src="Imagen1.jpg" alt="" style="" data-photo />
-            <div class="photo-overlay">Rio de Janeiro 2025</div>
-          </div>
-        </div>
+      <div class="story-slide">
+        <img src="Imagen3.jpg" alt="Mendoza 2023" />
+        <div class="story-caption">Mendoza 2023</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen1.jpg" alt="Rio de Janeiro 2025" />
+        <div class="story-caption">Rio de Janeiro 2025</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen4.jpg" alt="Foto 4" />
+        <div class="story-caption">Texto foto 4</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen5.jpg" alt="Foto 5" />
+        <div class="story-caption">Texto foto 5</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen6.jpg" alt="Foto 6" />
+        <div class="story-caption">Texto foto 6</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen7.jpg" alt="Foto 7" />
+        <div class="story-caption">Texto foto 7</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen8.jpg" alt="Foto 8" />
+        <div class="story-caption">Texto foto 8</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen9.jpg" alt="Foto 9" />
+        <div class="story-caption">Texto foto 9</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen10.jpg" alt="Foto 10" />
+        <div class="story-caption">Texto foto 10</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen11.jpg" alt="Foto 11" />
+        <div class="story-caption">Texto foto 11</div>
+      </div>
+
+      <div class="story-slide">
+        <img src="Imagen12.jpg" alt="Foto 12" />
+        <div class="story-caption">Texto foto 12</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="story-carousel-btn next" type="button" aria-label="Foto siguiente">
+    &#10095;
+  </button>
+</div>
+
+<div class="story-dots" id="storyDots"></div>
       </div>
     </section>
 
@@ -1782,6 +1956,56 @@ async function enviarCancion(cancion){
     })
   });
 }
+
+    const storyCarousel = document.getElementById("storyCarousel");
+const storyTrack = document.getElementById("storyCarouselTrack");
+const storyDots = document.getElementById("storyDots");
+
+if (storyCarousel && storyTrack && storyDots) {
+  const storySlides = Array.from(storyTrack.querySelectorAll(".story-slide"));
+  const prevBtn = storyCarousel.querySelector(".prev");
+  const nextBtn = storyCarousel.querySelector(".next");
+
+  let currentStoryIndex = 0;
+
+  storySlides.forEach((_, index) => {
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "story-dot" + (index === 0 ? " active" : "");
+    dot.setAttribute("aria-label", `Ir a la foto ${index + 1}`);
+    dot.addEventListener("click", () => {
+      currentStoryIndex = index;
+      updateStoryCarousel();
+    });
+    storyDots.appendChild(dot);
+  });
+
+  const dots = Array.from(storyDots.querySelectorAll(".story-dot"));
+
+  function updateStoryCarousel() {
+    storyTrack.style.transform = `translateX(-${currentStoryIndex * 100}%)`;
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("active", index === currentStoryIndex);
+    });
+  }
+
+  function nextStorySlide() {
+    currentStoryIndex = (currentStoryIndex + 1) % storySlides.length;
+    updateStoryCarousel();
+  }
+
+  function prevStorySlide() {
+    currentStoryIndex = (currentStoryIndex - 1 + storySlides.length) % storySlides.length;
+    updateStoryCarousel();
+  }
+
+  if (nextBtn) nextBtn.addEventListener("click", nextStorySlide);
+  if (prevBtn) prevBtn.addEventListener("click", prevStorySlide);
+
+  updateStoryCarousel();
+}
+    
   </script>  
 </body>
 </html>
